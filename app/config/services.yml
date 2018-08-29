@@ -29,6 +29,14 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    AppBundle\Controller\RegistrationController:
+        arguments:
+            $formFactory: '@fos_user.registration.form.factory'
+
+    AppBundle\Service\:
+        resource: '../../src/AppBundle/Service'
+        public: true
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
@@ -38,3 +46,4 @@ services:
         class: AppBundle\Form\RegistrationType
         tags:
         - { name: form.type, alias: app_user_registration }
+

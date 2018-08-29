@@ -13,9 +13,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $userId = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->find($userId);
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'user' => $user
         ]);
     }
 }

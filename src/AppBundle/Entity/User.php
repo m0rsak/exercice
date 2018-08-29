@@ -17,6 +17,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->roles = array('ROLE_USER');
+        $this->creationDate = new \DateTime('now');
     }
 
     /**
@@ -55,6 +56,25 @@ class User extends BaseUser
      * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
+
+    protected $email;
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        parent::setEmail($email);
+        $this->setUsername($email);
+    }
 
 
     /**
@@ -143,7 +163,6 @@ class User extends BaseUser
      * Set creationDate
      *
      * @param \DateTime $creationDate
-     *
      * @return User
      */
     public function setCreationDate($creationDate)
